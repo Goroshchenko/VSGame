@@ -12,15 +12,19 @@ namespace GamePart_1
 		private int x;
 		private int y;
 		private int level;
+		public string weapon;
+		public int attack;		
 
-		public Character(string name, int x, int y, int health, int level)
+		public Character(string name, int x, int y, int health, int level, string weapon, int attack)
 		{
 			this.name = name;
 			this.x = x;
 			this.y = y;
 			this.health = health;
 			this.level = level;
-			Console.WriteLine($"Object {this.name} was created at {this.x} {this.y}. Health {this.health}. level {this.level}");
+			this.weapon = weapon;
+			this.attack = attack;
+			Console.WriteLine($"Object {this.name} was created at {this.x} {this.y}. Health {this.health}. level {this.level}. attack {this.attack}");
 		}
 
 		public int Health
@@ -81,12 +85,12 @@ namespace GamePart_1
 			}
 		}
 		
-		public void Fight(string strikes)
+		public void Fight(string command, int attack)
         {
-			switch (strikes)
+			switch (command)
             {
 				case "f":
-					this.health -= 10;
+					this.health -= attack;
 					break;
 					case "stop":
 					this.health = 0;
@@ -100,9 +104,8 @@ namespace GamePart_1
 		}
 		public void Regeneration()
 		{
-			this.health += 30; 			
-		}
+			this.health += 15*this.level; 			
+		}	
 
-		
 	}
 }

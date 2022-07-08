@@ -13,12 +13,13 @@ namespace GamePart_1
 		public string nm { get; set; }
 		public int hlth { get; set; }
 		public int lvl { get; set; }
+		public int attack { get; set; }
 
 		public static List<Game> listofcharacters = new List<Game>
 			{
-				new Game {nm = "trus", xx = GameObject.GetX(1), yy = GameObject.GetY(1), hlth = 20, lvl = 0 },
-				new Game {nm = "balbes", xx = GameObject.GetX(2), yy = GameObject.GetY(2), hlth = 30, lvl = 1},
-				new Game {nm = "byvalyi", xx = GameObject.GetX(3), yy = GameObject.GetY(3), hlth = 50, lvl = 2},
+				new Game {nm = "trus", xx = GameObject.GetX(1), yy = GameObject.GetY(1), hlth = 30, lvl = 0, attack = 0 },
+				new Game {nm = "balbes", xx = GameObject.GetX(2), yy = GameObject.GetY(2), hlth = 60, lvl = 1, attack = 5 },
+				new Game {nm = "byvalyi", xx = GameObject.GetX(3), yy = GameObject.GetY(3), hlth = 100, lvl = 2, attack = 10 },
 			};
 	
 		public static string GetName(int i)
@@ -51,10 +52,9 @@ namespace GamePart_1
 		{
 			return (listofcharacters.Count());
 		}
-
-
-
-
-
+		public static int GetAttack(int i)
+		{
+			return (listofcharacters.ElementAt(i).attack);
+		}
 	}
 }

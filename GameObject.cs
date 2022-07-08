@@ -5,10 +5,11 @@ using System.Linq;
 
 namespace GamePart_1
 {
-    class GameObject
+    class GameObject 
     {
         private int x;
         private int y;
+		
 		public static List<GameObject> coordinates = new List<GameObject>
 			{
 			new GameObject {x = 10, y = 10},
