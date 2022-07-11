@@ -2,34 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace GamePart_1
+namespace GamePart_2
 {
     class Weapons
     {
-        public string name;
-        private int damage;
-        private int exp;
+        private string name;
         private int level;
-        public Weapons(string name, int damage, int exp, int level)
+        private int attack;
+        private int exp;
+        
+        public Weapons(string name, int level, int attack, int exp)
+            
         {
             this.name = name;
-            this.damage = damage;
-            this.exp = exp;
-            this.level = level;            
+            this.level = level;
+            this.attack = attack;
+            this.exp = exp;                       
         }
-        public int Damage
+        public string Name
         {
             get
             {
-                return this.damage;
+                return this.name;
             }
-        }
-        public int Exp
-        {
-            get
-            {
-                return this.exp;
-            }
+
         }
         public int Level
         {
@@ -37,30 +33,46 @@ namespace GamePart_1
             {
                 return this.level;
             }
+
         }
-        public static explicit operator int(Weapons axe)
+        public int Attack
         {
-            return (axe.Damage + axe.Level + axe.Exp)*2;
+            get
+            {
+                return this.attack;
+            }
+
         }
-        public static int Power(Weapons weapon)
+        public int Exp
         {
-            int power = (int)weapon;
+            get
+            {
+                return this.exp;
+            }
+        }        
+        public static explicit operator int(Weapons enemyWeapon)
+        {
+            return (enemyWeapon.attack + enemyWeapon.level + enemyWeapon.Exp)*2;
+        }
+        public static int Power(Weapons enemyWeapon)
+        {
+            int power = (int)enemyWeapon;
             return(power);
         }
        
-        public static Weapons operator +(Weapons sword, Weapons axe)
+        public static Weapons operator +(Weapons sword, Weapons enemyWeapon)
         {
-            new Weapons(sword.name, sword.damage + axe.damage, sword.exp + Power(axe), sword.level);
-            if (sword.exp + Power(axe) >= 20)
+            new Weapons(sword.name, sword.level, sword.attack + enemyWeapon.attack, sword.exp + Power(enemyWeapon));
+            if (sword.exp + Power(enemyWeapon) >= 20)
             {
                 sword.level += 1;
                 sword.exp = 0;
-                sword.damage += 10;
-                return new Weapons(sword.name, sword.damage, sword.exp, sword.level);
+                sword.attack += 10;
+                return new Weapons(sword.name, sword.level, sword.attack, sword.exp);
             }
             else
             {
-                return new Weapons(sword.name, sword.damage + axe.damage, sword.exp + Power(axe), sword.level);
+                return new Weapons(sword.name, sword.level, sword.attack + enemyWeapon.attack, sword.exp + Power(enemyWeapon));
             }
         }
 

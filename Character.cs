@@ -3,37 +3,28 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace GamePart_1
+namespace GamePart_2
 {
-    class Character
-    {
-		private string name;
-		private int health;
-		private int x;
-		private int y;
-		private int level;
+	public class Character
+	{
+		protected string name;
+		protected int level;
+		protected int attack;
+		protected int x;
+		protected int y;
+		protected int health;
 		public string weapon;
-		public int attack;		
-
-		public Character(string name, int x, int y, int health, int level, string weapon, int attack)
+		public Character(string name, int level, int attack, int x, int y, int health, string weapon)			
 		{
 			this.name = name;
+			this.level = level;
+			this.attack = attack;
 			this.x = x;
 			this.y = y;
 			this.health = health;
-			this.level = level;
 			this.weapon = weapon;
-			this.attack = attack;
-			Console.WriteLine($"Object {this.name} was created at {this.x} {this.y}. Health {this.health}. level {this.level}. attack {this.attack}");
-		}
 
-		public int Health
-		{
-			get
-			{
-				return this.health;
-			}
-			
+			Console.WriteLine($"Object {this.name} was created at {this.x} {this.y}. Health {this.health}. level {this.level}. attack {this.attack}");
 		}
 		public string Name
 		{
@@ -51,19 +42,35 @@ namespace GamePart_1
 			}
 
 		}
+		public int Attack
+		{
+			get
+			{
+				return this.attack;
+			}
+
+		}
+		public int Health
+		{
+			get
+			{
+				return this.health;
+			}
+
+		}
 		public int X
 		{
 			get
 			{
 				return this.x;
-			}			
+			}
 		}
 		public int Y
 		{
 			get
 			{
 				return this.y;
-			}			
+			}
 		}
 
 		public void Move(ConsoleKeyInfo KeyPushed)
@@ -84,28 +91,33 @@ namespace GamePart_1
 					break;
 			}
 		}
-		
-		public void Fight(string command, int attack)
-        {
+
+		public virtual void Fight(string command, int attack)
+		{
 			switch (command)
-            {
+			{
 				case "f":
+					Console.WriteLine($"{this.name} attacks with {this.weapon}");
 					this.health -= attack;
 					break;
-					case "stop":
+				case "stop":
 					this.health = 0;
 					break;
 			}
 		}
 		public void LevelUp()
 		{
-			this.level++; 
-			
+			this.level++;
+
 		}
 		public void Regeneration()
 		{
-			this.health += 15*this.level; 			
-		}	
-
+			this.health += 15 * this.level;
+		}
+		public void plusAttack(int parameter)
+		{
+			this.attack = parameter;
+		}
 	}
 }
+

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace GamePart_1
+namespace GamePart_2
 {
     class GameObject 
     {
