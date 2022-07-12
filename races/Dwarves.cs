@@ -4,16 +4,16 @@ using System.Text;
 
 namespace GamePart_2
 {
-	class Wizard : Character
-	{
-		public Wizard(string name, int level, int attack, int x, int y, int health, string weapon, ConsoleColor color)
-		: base(name, level, attack, x, y, health, weapon, color) { }
+    class Dwarf : Character
+    {
+		public Dwarf(string name, int level, int attack, int x, int y, int health, string weapon)
+		   : base(name, level, attack, x, y, health, weapon) { }
 		public override void Fight(string command, int attack)
 		{
 			switch (command)
-			{				
+			{
 				case "f":
-					Console.WriteLine($"AHALAI-MAHALAI !!!");
+					Console.WriteLine($"Zoloto budet nashe !!!");
 					Console.WriteLine($"{this.name} attacks with {this.weapon}");
 					this.health -= attack;
 					break;

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GamePart_2
 {
-	public class Elve : Character
+	class Elve : Character, IFriend
 	{
 		public Elve(string name, int level, int attack, int x, int y, int health, string weapon)
 		: base(name, level, attack, x, y, health, weapon) { }
@@ -21,6 +21,10 @@ namespace GamePart_2
 					this.health = 0;
 					break;
 			}
+		}
+		public override bool isFriend()
+		{
+			return true;
 		}
 	}
 }

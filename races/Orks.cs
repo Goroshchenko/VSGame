@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GamePart_2
 {
-	public class Ork : Character
+	class Ork : Character
 	{
 		public Ork(string name, int level, int attack, int x, int y, int health, string weapon)
 		: base(name, level, attack, x, y, health, weapon) { }

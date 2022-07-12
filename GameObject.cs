@@ -14,8 +14,9 @@ namespace GamePart_2
 			{
 			new GameObject {x = 10, y = 10},
 			new GameObject {x = 11, y = 11},
-			new GameObject {x = 9, y = 9},
 			new GameObject {x = 12, y = 8},
+			new GameObject {x = 9, y = 9},
+			new GameObject {x = 13, y = 7},
 			};
 
 		public static int GetX(int i)

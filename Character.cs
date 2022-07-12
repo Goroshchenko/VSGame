@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace GamePart_2
 {
-	public class Character
+	public abstract class Character : IFriend
 	{
 		protected string name;
 		protected int level;
@@ -92,19 +92,7 @@ namespace GamePart_2
 			}
 		}
 
-		public virtual void Fight(string command, int attack)
-		{
-			switch (command)
-			{
-				case "f":
-					Console.WriteLine($"{this.name} attacks with {this.weapon}");
-					this.health -= attack;
-					break;
-				case "stop":
-					this.health = 0;
-					break;
-			}
-		}
+		public virtual void Fight(string command, int attack)	{	}
 		public void LevelUp()
 		{
 			this.level++;
@@ -118,6 +106,11 @@ namespace GamePart_2
 		{
 			this.attack = parameter;
 		}
+		public virtual bool isFriend()
+		{
+			return false;
+		}
+
 	}
 }
 

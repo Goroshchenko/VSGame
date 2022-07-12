@@ -10,17 +10,20 @@ namespace GamePart_2
         {                      
             Weapons sword = new Weapons("Sword", 1, 10, 0);
             Weapons axe = new Weapons("Axe", 1, 5, 0);
-            Weapons arch = new Weapons("Arch", 1, 10, 0);
+            Weapons hammer = new Weapons("Hammer", 1, 10, 0);
             Weapons fireball = new Weapons("Fireball", 1, 15, 0);
+            Weapons arch = new Weapons("Arch", 1, 10, 0);
             Man player = new Man("PLAYER", 1, sword.Attack, GameObject.GetX(0), GameObject.GetY(0), 50, sword.Name);
             Console.WriteLine($"His weapon is {sword.Name} with stats: damage {sword.Attack} exp {sword.Exp}. level {sword.Level}");
             Console.WriteLine($"Your enemies are:");
             Ork trus = new Ork("TRUS", 0, axe.Attack, GameObject.GetX(1), GameObject.GetY(1), 30, axe.Name);
-            Elve balbes = new Elve("BALBES", 1, arch.Attack, GameObject.GetX(2), GameObject.GetY(2), 60, arch.Name);
-            Wizard byvalyi = new Wizard("BYVALYI", 2, fireball.Attack, GameObject.GetX(3), GameObject.GetY(3), 100, fireball.Name);
+            Elve LogoVAZ = new Elve("LogoVAZ", 1, arch.Attack, GameObject.GetX(2), GameObject.GetY(2), 50, arch.Name);
+            Dwarf balbes = new Dwarf("BALBES", 2, hammer.Attack, GameObject.GetX(3), GameObject.GetY(3), 60, hammer.Name);
+            Wizard byvalyi = new Wizard("BYVALYI", 3, fireball.Attack, GameObject.GetX(4), GameObject.GetY(4), 100, fireball.Name);
             List<Character> listofchar = new List<Character>();
             listofchar.Add(player);
             listofchar.Add(trus);
+            listofchar.Add(LogoVAZ);
             listofchar.Add(balbes);
             listofchar.Add(byvalyi);
 
@@ -28,6 +31,7 @@ namespace GamePart_2
             listofweapons.Add(sword);
             listofweapons.Add(axe);
             listofweapons.Add(arch);
+            listofweapons.Add(hammer);
             listofweapons.Add(fireball);
 
         begin:
@@ -45,7 +49,7 @@ namespace GamePart_2
                 {
                     if (player.X == listofchar[i].X && player.Y == listofchar[i].Y)
                     {
-                        Console.WriteLine("Objects are on the same position. FIGHT !!!");
+                        Console.WriteLine("Objects are on the same position!!!");
                         flag = false;                                           
                         break;
                     }
@@ -59,7 +63,15 @@ namespace GamePart_2
                 
              }
             Character enemy = listofchar[number];
-            Weapons enemyWeapon = listofweapons[number];
+            int newHealth = player.Health;
+            player.Heal(enemy);
+            if (newHealth != player.Health)
+            {                
+                Console.WriteLine($"Your new health: {player.Health}");
+                Console.ReadKey();
+                goto begin;
+            }
+                Weapons enemyWeapon = listofweapons[number];            
             while (player.Health > 0 && enemy.Health > 0)
                     {
                         Console.WriteLine($"HERO {player.Health} ENEMY {enemy.Health}");
@@ -89,8 +101,8 @@ namespace GamePart_2
                     listofchar.Remove(listofchar[number]);
                     listofweapons.Remove(listofweapons[number]);
                     Console.ReadKey();
-                    while (listofchar.Count > 1)
-                    {
+                    while (listofchar.Count > 2)
+                    {                        
                         goto begin;
                     }                
                           

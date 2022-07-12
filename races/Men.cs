@@ -4,7 +4,7 @@ using System.Text;
 using System.Linq;
 
 namespace GamePart_2
-{	public class Man : Character
+{	class Man : Character
 	{
 		public Man(string name, int level, int attack, int x, int y, int health, string weapon)
 		: base(name, level, attack, x, y, health, weapon) { }
@@ -13,7 +13,7 @@ namespace GamePart_2
 			switch (command)
 			{			
 				case "f":
-					Console.WriteLine($"Za pobedu!!! sila V pravde!");
+					Console.WriteLine($"Vpered, k Pobede!");
 					Console.WriteLine($"{this.name} attacks with {this.weapon}");
 					this.health -= attack;
 					break;
@@ -21,6 +21,15 @@ namespace GamePart_2
 					this.health = 0;
 					break;
 			}
+		}
+		public void Heal(IFriend name)
+		{
+			if (name.isFriend())
+			{
+				name.Talk(this);
+				this.health += 10;
+			}
+
 		}
 	}	
 }

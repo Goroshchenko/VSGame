@@ -75,6 +75,5 @@ namespace GamePart_2
                 return new Weapons(sword.name, sword.level, sword.attack + enemyWeapon.attack, sword.exp + Power(enemyWeapon));
             }
         }
-
     }
 }
