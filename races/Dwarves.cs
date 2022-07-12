@@ -6,8 +6,8 @@ namespace GamePart_2
 {
     class Dwarf : Character
     {
-		public Dwarf(string name, int level, int attack, int x, int y, int health, string weapon)
-		   : base(name, level, attack, x, y, health, weapon) { }
+		public Dwarf(string name, int level, int attack, Position position, int health, string weapon, ConsoleColor color)
+		   : base(name, level, attack, position, health, weapon, color) { }
 		public override void Fight(string command, int attack)
 		{
 			switch (command)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GamePart_2
 {
-    class Weapons
+    public class Weapons
     {
         private string name;
         private int level;

@@ -10,21 +10,20 @@ namespace GamePart_2
 		protected string name;
 		protected int level;
 		protected int attack;
-		protected int x;
-		protected int y;
+		private Position position;
 		protected int health;
 		public string weapon;
-		public Character(string name, int level, int attack, int x, int y, int health, string weapon)			
+		protected ConsoleColor color;
+		public Character(string name, int level, int attack, Position position, int health, string weapon, ConsoleColor color)			
 		{
 			this.name = name;
 			this.level = level;
 			this.attack = attack;
-			this.x = x;
-			this.y = y;
+			this.position = position;			
 			this.health = health;
 			this.weapon = weapon;
-
-			Console.WriteLine($"Object {this.name} was created at {this.x} {this.y}. Health {this.health}. level {this.level}. attack {this.attack}");
+			this.color = color;
+			Console.WriteLine($"Object {this.name} was created at {this.position.X} {this.position.Y}. Health {this.health}. level {this.level}. attack {this.attack}");
 		}
 		public string Name
 		{
@@ -50,6 +49,14 @@ namespace GamePart_2
 			}
 
 		}
+		public Position Position
+		{
+			get
+			{
+				return this.position;
+			}
+
+		}
 		public int Health
 		{
 			get
@@ -57,41 +64,14 @@ namespace GamePart_2
 				return this.health;
 			}
 
-		}
-		public int X
+		}		
+		public ConsoleColor Color
 		{
 			get
 			{
-				return this.x;
+				return this.color;
 			}
 		}
-		public int Y
-		{
-			get
-			{
-				return this.y;
-			}
-		}
-
-		public void Move(ConsoleKeyInfo KeyPushed)
-		{
-			switch (KeyPushed.Key)
-			{
-				case ConsoleKey.RightArrow:
-					this.x++;
-					break;
-				case ConsoleKey.LeftArrow:
-					this.x--;
-					break;
-				case ConsoleKey.UpArrow:
-					this.y++;
-					break;
-				case ConsoleKey.DownArrow:
-					this.y--;
-					break;
-			}
-		}
-
 		public virtual void Fight(string command, int attack)	{	}
 		public void LevelUp()
 		{
@@ -109,6 +89,15 @@ namespace GamePart_2
 		public virtual bool isFriend()
 		{
 			return false;
+		}
+		public void Heal(IFriend name)
+		{
+			if (name.isFriend())
+			{
+				name.Talk(this);
+				this.health += 10;
+			}
+
 		}
 
 	}
